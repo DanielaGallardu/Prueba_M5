@@ -1,13 +1,13 @@
 // modal
 function mostrarDetalleAnimal(animal) {
-  // Seleccionamos la ventana modal
+  // selecciono ventana modal
   const modal = document.getElementById('Modal');
   const modalBody = modal.querySelector('.modal-body');
 
-  // Limpiamos el contenido anterior del modal
+  // limpiar contenido
   modalBody.innerHTML = '';
 
-  // Creamos el contenido del modal con los detalles del animal
+  // contenido  del modal
   const modalContent = `
   <h3 class="text-center mb-3">${animal.nombre}</h3>
     <img src="../assets/imgs/${animal.img}" class="img-fluid rounded mx-auto d-block" alt="${animal.nombre}">
@@ -16,10 +16,10 @@ function mostrarDetalleAnimal(animal) {
     <p>${animal.comentarios}</p>
   `;
 
-  // Insertamos el contenido en el cuerpo del modal
+  //  contenido en el cuerpo del modal
   modalBody.innerHTML = modalContent;
 
-  // Mostramos el modal
+  // mostrar el modal
   $(modal).modal('show');
 }
 

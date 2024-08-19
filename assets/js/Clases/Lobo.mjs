@@ -1,12 +1,9 @@
-import { Animal } from "./animal.mjs";
+import { Animal } from "../Clases/Animal.mjs";
 
 class Lobo extends Animal {
   constructor(nombre, edad, img, comentarios, sonido) {
     super(nombre, edad, img, comentarios, sonido)
-  }
-  Aullar() {
-    return 'Auuu!!!🐺'
-  }
+  }  
 }
 export { Lobo }
 

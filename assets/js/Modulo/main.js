@@ -9,17 +9,18 @@ import { registroDeAnimales } from "../Modulo/registro.mjs";
 const instanciadorAnimales = { Aguila, Leon, Lobo, Oso, Serpiente };
 
 document.getElementById('btnRegistrar').addEventListener('click', async () => {
+  // captura de valores ingresados 
   const nombreHTML = document.getElementById('animal');
   const edadHTML = document.getElementById('edad');
   const comentariosHTML = document.getElementById('comentarios');
-  
+  // llamar a la funcion que llama a la Api
   const { imagen, sonido } = await registroDeAnimales.obtenerDatosJson(nombreHTML.value);
-  
+  // validacion del formulario
   if (!nombreHTML.value || !edadHTML.value || !comentariosHTML.value) {
     alert('Por favor, complete todos los campos.');
     return;
   }
-  
+  // instanciardor 
   const ClaseAnimal = instanciadorAnimales[nombreHTML.value];
   let animal = new ClaseAnimal(
     nombreHTML.value, 
@@ -33,7 +34,7 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
   registroDeAnimales.mostrarCardsAnimales(registroDeAnimales.animalesRegistrados, 'Animales');
   registroDeAnimales.limpiarFormulario();
 
-  // Añadir evento para mostrar el modal al hacer clic en la imagen del animal
+  // mostrar el modal al hacer clic en la imagen del animal
   document.querySelectorAll('#Animales .card img').forEach(img => {
     img.addEventListener('click', () => {
       const animal = registroDeAnimales.animalesRegistrados.find(a => a.nombre === img.alt);
@@ -41,11 +42,14 @@ document.getElementById('btnRegistrar').addEventListener('click', async () => {
     });
   });
 });
-
+  //  manejar el cambio en la selección de animales en el formulario
 document.getElementById('animal').addEventListener("change", async (event) => {
+ 
+  // Obtener la imagen del animal seleccionado
   const { imagen } = await registroDeAnimales.obtenerDatosJson(event.target.value);
   const nombreAnimal = event.target.value;
-
+  
+  //previsualización del animal seleccionado 
   const preview = document.getElementById('preview');
   preview.innerHTML = '';
 
